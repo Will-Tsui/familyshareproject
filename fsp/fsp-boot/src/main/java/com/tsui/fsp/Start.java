@@ -1,13 +1,15 @@
-package com.tsui.familyproject.share.share;
+package com.tsui.fsp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
 
 @SpringBootApplication
-public class ShareApplication {
+@ComponentScan("com.tsui")
+public class Start {
 
     public static void main(String[] args) {
-        SpringApplication.run(ShareApplication.class, args);
+        SpringApplication.run(Start.class,args);
     }
-
 }
