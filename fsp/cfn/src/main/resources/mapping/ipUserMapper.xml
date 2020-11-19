@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tsui.fsp.dao.ipUserMapper">
-  <resultMap id="BaseResultMap" type="com.tsui.fsp.vo.ipUser">
+<mapper namespace="com.tsui.fsp.dao.IipUserMapper">
+  <resultMap id="BaseResultMap" type="com.tsui.fsp.vo.IpUserVo">
     <id column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="userlogginname" jdbcType="VARCHAR" property="userlogginname" />
@@ -15,17 +15,27 @@
     from ip_user
     where userid = #{userid,jdbcType=VARCHAR}
   </select>
+
+
+  <select id="findAllInfos" parameterType="com.tsui.fsp.vo.IpUserVo" resultMap="BaseResultMap">
+    select
+      userid,username,userlogginname
+    from ip_user
+    where 1=1
+    <if test="userid != null"> and userid = #{userid,jdbcType=VARCHAR} </if>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from ip_user
     where userid = #{userid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.tsui.fsp.vo.ipUser">
+  <insert id="insert" parameterType="com.tsui.fsp.vo.IpUserVo">
     insert into ip_user (userid, username, userlogginname
       )
     values (#{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{userlogginname,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.tsui.fsp.vo.ipUser">
+  <insert id="insertSelective" parameterType="com.tsui.fsp.vo.IpUserVo">
     insert into ip_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userid != null">
@@ -50,7 +60,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tsui.fsp.vo.ipUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tsui.fsp.vo.IpUserVo">
     update ip_user
     <set>
       <if test="username != null">
@@ -62,7 +72,7 @@
     </set>
     where userid = #{userid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tsui.fsp.vo.ipUser">
+  <update id="updateByPrimaryKey" parameterType="com.tsui.fsp.vo.IpUserVo">
     update ip_user
     set username = #{username,jdbcType=VARCHAR},
       userlogginname = #{userlogginname,jdbcType=VARCHAR}

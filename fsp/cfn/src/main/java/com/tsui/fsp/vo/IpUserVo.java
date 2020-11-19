@@ -1,6 +1,6 @@
 package com.tsui.fsp.vo;
 
-public class ipUser {
+public class IpUserVo {
     private String userid;
 
     private String username;

@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("tsui")
 
 public class TestCtl {
-    public static void main(String[] args) {
-        System.out.println("g");
-    }
 
     @RequestMapping("/good")
     public String test(){
+
+        System.out.println("god");
         return "good";
     }
 }
